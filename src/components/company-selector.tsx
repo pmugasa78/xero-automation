@@ -175,7 +175,8 @@ export default function CompanySelector({ rawCompaniesData }: any) {
           'h1.xui-pageheading--title[data-automationid="report-page-header--title"]'
         );
         const reportTitle = heading ? heading?.textContent?.trim() : null;
-        chrome.runtime.sendMessage({
+
+        browser.runtime.sendMessage({
           action: "setDownloadName",
           name: company,
           reportTitle,
