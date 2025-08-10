@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, FolderDown } from "lucide-react";
+import { Search, FolderDown, LoaderCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -80,7 +80,6 @@ export default function CompanySelector({ rawCompaniesData }: any) {
   const handleSubmit = async () => {
     try {
       if (selectedCompanies.length === 0) return;
-
       setIsProcessing(true);
       setOpen(false);
 
@@ -216,10 +215,15 @@ export default function CompanySelector({ rawCompaniesData }: any) {
         <DialogTrigger asChild>
           <Button
             onClick={openDialog}
+            disabled={isProcessing}
             size="icon"
             className=" size-10 rounded hover:cursor-pointer bg-teal-600 hover:bg-teal-900 "
           >
-            <FolderDown />
+            {isProcessing ? (
+              <LoaderCircle className="animate-spin" />
+            ) : (
+              <FolderDown />
+            )}
           </Button>
         </DialogTrigger>
         <DialogContent className="max-w-md">
